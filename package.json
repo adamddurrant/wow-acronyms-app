@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.1",
+    "lodash": "^4.17.21",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5",
     "vue-search-input": "^1.1.14"

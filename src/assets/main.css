@@ -5,6 +5,15 @@
   margin: 0 auto;
   padding: 2rem;
   font-weight: normal;
+  grid-template-columns: 1fr;
+}
+
+.intro {
+  margin-bottom: 20px;
+}
+
+.results {
+  margin-top: 20px;
 }
 
 a,
@@ -29,7 +38,7 @@ a,
 
   #app {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     padding: 0 2rem;
   }
 }

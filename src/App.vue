@@ -3,43 +3,58 @@ import { ref } from 'vue'
 import { supabase } from './lib/supabaseClient'
 import SearchInput from 'vue-search-input'
 import 'vue-search-input/dist/styles.css'
+import { debounce } from 'lodash';
 
-const searchVal = ref('')
-const searchResults = ref([])
+const searchVal = ref('');
+const searchResults = ref([]);
+const loading = ref(false);
+let searchTimeout;
 
 async function getAcronyms(query) {
   const { data } = await supabase.from('acronyms').select().ilike('acronym', `%${query}%`)
-  searchResults.value = data || []
+  searchResults.value = data || [];
 }
 
-const handleSearch = async () => {
+const handleSearch = debounce(() => {
   const trimmedQuery = searchVal.value.trim();
 
-  // Always update searchResults, even if trimmedQuery is empty
-  await getAcronyms(trimmedQuery)
-
-  // Set searchResults to an empty array if trimmedQuery is empty
-  if (trimmedQuery === '') {
-    searchResults.value = []
+  if (trimmedQuery === '' || !/^[a-zA-Z0-9 ]+$/.test(trimmedQuery)) {
+    searchResults.value = [];
+    return;
   }
-}
+
+  loading.value = true;
+
+  getAcronyms(trimmedQuery).then(() => {
+    loading.value = false;
+  });
+}, 500);
 
 </script>
 
 <template>
-  <h1>Test</h1>
 
-  <div class="input-wrapper">
-    <SearchInput @input="handleSearch" v-model="searchVal" />
-  </div>
+  <section class="intro">
+    <h1>WoW Abbreviations / Acronyms Lookup</h1>
+  </section>
 
-  <ul v-if="searchVal !== '' && searchResults.length > 0">
-    <li v-for="result in searchResults" :key="result.id">
-      {{ result.acronym }} - {{ result.meaning }}
-    </li>
-  </ul>
-  <p v-else-if="searchVal !== ''">No results found.</p>
-  <p v-else>Enter a search query.</p>
+  <section class="search">
+    <div class="input-wrapper">
+      <SearchInput @input="handleSearch" v-model="searchVal" />
+    </div>
+  </section>
+
+  <section class="results">
+    <p v-if="loading">Searching...</p>
+    <ul v-else-if="searchVal !== '' && searchResults.length > 0">
+      <li v-for="result in searchResults" :key="result.id">
+        {{ result.acronym }} - {{ result.meaning }}
+      </li>
+    </ul>
+    <p v-else-if="searchVal !== ''">No results found.</p>
+    <p v-else>Enter a search query.</p>
+  </section>
+
 </template>
 
 <script>
@@ -50,4 +65,7 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+
+</style>
