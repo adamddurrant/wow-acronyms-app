@@ -1,95 +1,53 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { supabase } from './lib/supabaseClient'
+import SearchInput from 'vue-search-input'
+import 'vue-search-input/dist/styles.css'
 
-const acronyms = ref([])
+const searchVal = ref('')
+const searchResults = ref([])
 
-async function getAcronyms() {
-  const { data } = await supabase.from('acronyms').select()
-  acronyms.value = data
+async function getAcronyms(query) {
+  const { data } = await supabase.from('acronyms').select().ilike('acronym', `%${query}%`)
+  searchResults.value = data || []
 }
 
-onMounted(() => {
-  getAcronyms()
-})
+const handleSearch = async () => {
+  const trimmedQuery = searchVal.value.trim();
+
+  // Always update searchResults, even if trimmedQuery is empty
+  await getAcronyms(trimmedQuery)
+
+  // Set searchResults to an empty array if trimmedQuery is empty
+  if (trimmedQuery === '') {
+    searchResults.value = []
+  }
+}
 
 </script>
 
 <template>
   <h1>Test</h1>
-  <ul>
-    <li v-for="acronym in acronyms" :key="acronym.id">
-      {{ acronym.acronym }} - {{ acronym.meaning }}
+
+  <div class="input-wrapper">
+    <SearchInput @input="handleSearch" v-model="searchVal" />
+  </div>
+
+  <ul v-if="searchVal !== '' && searchResults.length > 0">
+    <li v-for="result in searchResults" :key="result.id">
+      {{ result.acronym }} - {{ result.meaning }}
     </li>
   </ul>
-
+  <p v-else-if="searchVal !== ''">No results found.</p>
+  <p v-else>Enter a search query.</p>
 </template>
 
-
-
-
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+<script>
+export default {
+  components: {
+    SearchInput
   }
 }
-</style>
+</script>
+
+<style scoped></style>
