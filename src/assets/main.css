@@ -1,4 +1,22 @@
 @import './base.css';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+@font-face {
+  font-family: 'Quadrant Serial';
+  src: url(../components/fonts/Quadrat-Serial-Medium.ttf);
+  font-weight: 500;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-image: url(../components/background/cataclysm-bg.avif);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--vt-c-white);
+  display: flex;
+  place-items: center;
+}
 
 #app {
   max-width: 1280px;
@@ -6,6 +24,22 @@
   padding: 2rem;
   font-weight: normal;
   grid-template-columns: 1fr;
+  mask-image: url(../components/background/mask.png);
+  margin-top: -40px;
+  margin-bottom: -60px;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.main-wrapper {
+
+}
+
+h1 {
+  font-family: 'Quadrant Serial';
+  text-align: center;
+  font-size: 40px;
+  line-height: 48px;
 }
 
 .intro {
@@ -16,29 +50,469 @@
   margin-top: 20px;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+/* Fire animation */
+
+.fire {
+  display: none;
+  font-size: 24px;
+  filter: blur(1em);
+  -webkit-filter: blur(1em);
+  margin: 50px auto 0 auto;
+  position: absolute;
+  pointer-events: none;
+  height: 3em;
+  width: 900px;
+  left: -200px;
+  bottom: -350px;
+}
+@media (min-width: 960px) {
+  .fire {
+    display: block;
+  }
+}
+@media (min-width: 480px) {
+  .fire {
+    width: 1100px;
+    bottom: -345px;
+  }
+}
+@media (min-width: 720px) {
+  .fire {
+    width: 1500px;
+  }
+}
+@media (min-width: 960px) {
+  .fire {
+    width: 1600px;
+    bottom: -340px;
+  }
+}
+@media (min-width: 1200px) {
+  .fire {
+    width: 1800px;
+  }
+}
+@media (min-width: 1400px) {
+  .fire {
+    width: 2000px;
+  }
+}
+@media (min-width: 1600px) {
+  .fire {
+    width: 3000px;
+    bottom: -305px;
+  }
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+.particle {
+  pointer-events: none;
+  animation: rise 2s ease-in infinite;
+  background-image: radial-gradient(rgba(177, 39, 5, 0.699) 30%, transparent 70%);
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  width: 15em;
+  height: 15em;
 }
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr;
-    padding: 0 2rem;
-  }
+.particle:nth-of-type(1) {
+  animation-delay: 0.3214518679s;
+  left: calc((100% - 15em) * 0);
+}
+.particle:nth-of-type(2) {
+  animation-delay: 0.0080200663s;
+  left: calc((100% - 15em) * 0.01);
+}
+.particle:nth-of-type(3) {
+  animation-delay: 1.7776620845s;
+  left: calc((100% - 15em) * 0.02);
+}
+.particle:nth-of-type(4) {
+  animation-delay: 0.1028954764s;
+  left: calc((100% - 15em) * 0.03);
+}
+.particle:nth-of-type(5) {
+  animation-delay: 1.4608165768s;
+  left: calc((100% - 15em) * 0.04);
+}
+.particle:nth-of-type(6) {
+  animation-delay: 0.123124665s;
+  left: calc((100% - 15em) * 0.05);
+}
+.particle:nth-of-type(7) {
+  animation-delay: 1.5758496161s;
+  left: calc((100% - 15em) * 0.06);
+}
+.particle:nth-of-type(8) {
+  animation-delay: 0.223997902s;
+  left: calc((100% - 15em) * 0.07);
+}
+.particle:nth-of-type(9) {
+  animation-delay: 1.6129166242s;
+  left: calc((100% - 15em) * 0.08);
+}
+.particle:nth-of-type(10) {
+  animation-delay: 1.4471818742s;
+  left: calc((100% - 15em) * 0.09);
+}
+.particle:nth-of-type(11) {
+  animation-delay: 0.3631359765s;
+  left: calc((100% - 15em) * 0.1);
+}
+.particle:nth-of-type(12) {
+  animation-delay: 1.9861091986s;
+  left: calc((100% - 15em) * 0.11);
+}
+.particle:nth-of-type(13) {
+  animation-delay: 1.604274004s;
+  left: calc((100% - 15em) * 0.12);
+}
+.particle:nth-of-type(14) {
+  animation-delay: 0.0077564907s;
+  left: calc((100% - 15em) * 0.13);
+}
+.particle:nth-of-type(15) {
+  animation-delay: 0.0076332282s;
+  left: calc((100% - 15em) * 0.14);
+}
+.particle:nth-of-type(16) {
+  animation-delay: 0.246841358s;
+  left: calc((100% - 15em) * 0.15);
+}
+.particle:nth-of-type(17) {
+  animation-delay: 1.3324221801s;
+  left: calc((100% - 15em) * 0.16);
+}
+.particle:nth-of-type(18) {
+  animation-delay: 0.939549006s;
+  left: calc((100% - 15em) * 0.17);
+}
+.particle:nth-of-type(19) {
+  animation-delay: 1.9481921682s;
+  left: calc((100% - 15em) * 0.18);
+}
+.particle:nth-of-type(20) {
+  animation-delay: 1.2894383321s;
+  left: calc((100% - 15em) * 0.19);
+}
+.particle:nth-of-type(21) {
+  animation-delay: 0.8472343803s;
+  left: calc((100% - 15em) * 0.2);
+}
+.particle:nth-of-type(22) {
+  animation-delay: 0.4140290716s;
+  left: calc((100% - 15em) * 0.21);
+}
+.particle:nth-of-type(23) {
+  animation-delay: 0.9846540627s;
+  left: calc((100% - 15em) * 0.22);
+}
+.particle:nth-of-type(24) {
+  animation-delay: 0.1781881386s;
+  left: calc((100% - 15em) * 0.23);
+}
+.particle:nth-of-type(25) {
+  animation-delay: 0.5494116704s;
+  left: calc((100% - 15em) * 0.24);
+}
+.particle:nth-of-type(26) {
+  animation-delay: 0.2243038346s;
+  left: calc((100% - 15em) * 0.25);
+}
+.particle:nth-of-type(27) {
+  animation-delay: 0.9334531246s;
+  left: calc((100% - 15em) * 0.26);
+}
+.particle:nth-of-type(28) {
+  animation-delay: 0.2479557339s;
+  left: calc((100% - 15em) * 0.27);
+}
+.particle:nth-of-type(29) {
+  animation-delay: 1.4577130803s;
+  left: calc((100% - 15em) * 0.28);
+}
+.particle:nth-of-type(30) {
+  animation-delay: 0.0138830257s;
+  left: calc((100% - 15em) * 0.29);
+}
+.particle:nth-of-type(31) {
+  animation-delay: 0.0365060156s;
+  left: calc((100% - 15em) * 0.3);
+}
+.particle:nth-of-type(32) {
+  animation-delay: 1.6108336433s;
+  left: calc((100% - 15em) * 0.31);
+}
+.particle:nth-of-type(33) {
+  animation-delay: 0.9549711554s;
+  left: calc((100% - 15em) * 0.32);
+}
+.particle:nth-of-type(34) {
+  animation-delay: 1.6258202591s;
+  left: calc((100% - 15em) * 0.33);
+}
+.particle:nth-of-type(35) {
+  animation-delay: 0.979934181s;
+  left: calc((100% - 15em) * 0.34);
+}
+.particle:nth-of-type(36) {
+  animation-delay: 1.521073517s;
+  left: calc((100% - 15em) * 0.35);
+}
+.particle:nth-of-type(37) {
+  animation-delay: 0.5261611167s;
+  left: calc((100% - 15em) * 0.36);
+}
+.particle:nth-of-type(38) {
+  animation-delay: 0.7896539775s;
+  left: calc((100% - 15em) * 0.37);
+}
+.particle:nth-of-type(39) {
+  animation-delay: 0.8065978455s;
+  left: calc((100% - 15em) * 0.38);
+}
+.particle:nth-of-type(40) {
+  animation-delay: 0.0044761911s;
+  left: calc((100% - 15em) * 0.39);
+}
+.particle:nth-of-type(41) {
+  animation-delay: 0.5864990591s;
+  left: calc((100% - 15em) * 0.4);
+}
+.particle:nth-of-type(42) {
+  animation-delay: 1.7683288856s;
+  left: calc((100% - 15em) * 0.41);
+}
+.particle:nth-of-type(43) {
+  animation-delay: 0.1437711787s;
+  left: calc((100% - 15em) * 0.42);
+}
+.particle:nth-of-type(44) {
+  animation-delay: 0.3698467271s;
+  left: calc((100% - 15em) * 0.43);
+}
+.particle:nth-of-type(45) {
+  animation-delay: 0.0596275774s;
+  left: calc((100% - 15em) * 0.44);
+}
+.particle:nth-of-type(46) {
+  animation-delay: 1.1834028373s;
+  left: calc((100% - 15em) * 0.45);
+}
+.particle:nth-of-type(47) {
+  animation-delay: 0.4929012167s;
+  left: calc((100% - 15em) * 0.46);
+}
+.particle:nth-of-type(48) {
+  animation-delay: 0.7555508583s;
+  left: calc((100% - 15em) * 0.47);
+}
+.particle:nth-of-type(49) {
+  animation-delay: 0.5944062104s;
+  left: calc((100% - 15em) * 0.48);
+}
+.particle:nth-of-type(50) {
+  animation-delay: 1.837838549s;
+  left: calc((100% - 15em) * 0.49);
+}
+.particle:nth-of-type(51) {
+  animation-delay: 0.5088068322s;
+  left: calc((100% - 15em) * 0.5);
+}
+.particle:nth-of-type(52) {
+  animation-delay: 1.2923429065s;
+  left: calc((100% - 15em) * 0.51);
+}
+.particle:nth-of-type(53) {
+  animation-delay: 0.6602265151s;
+  left: calc((100% - 15em) * 0.52);
+}
+.particle:nth-of-type(54) {
+  animation-delay: 0.6179989661s;
+  left: calc((100% - 15em) * 0.53);
+}
+.particle:nth-of-type(55) {
+  animation-delay: 0.4558327187s;
+  left: calc((100% - 15em) * 0.54);
+}
+.particle:nth-of-type(56) {
+  animation-delay: 1.4866272165s;
+  left: calc((100% - 15em) * 0.55);
+}
+.particle:nth-of-type(57) {
+  animation-delay: 0.665290297s;
+  left: calc((100% - 15em) * 0.56);
+}
+.particle:nth-of-type(58) {
+  animation-delay: 1.5566270346s;
+  left: calc((100% - 15em) * 0.57);
+}
+.particle:nth-of-type(59) {
+  animation-delay: 0.8486250571s;
+  left: calc((100% - 15em) * 0.58);
+}
+.particle:nth-of-type(60) {
+  animation-delay: 1.5610424265s;
+  left: calc((100% - 15em) * 0.59);
+}
+.particle:nth-of-type(61) {
+  animation-delay: 1.4652909894s;
+  left: calc((100% - 15em) * 0.6);
+}
+.particle:nth-of-type(62) {
+  animation-delay: 0.5930788416s;
+  left: calc((100% - 15em) * 0.61);
+}
+.particle:nth-of-type(63) {
+  animation-delay: 0.0390562126s;
+  left: calc((100% - 15em) * 0.62);
+}
+.particle:nth-of-type(64) {
+  animation-delay: 1.2004457259s;
+  left: calc((100% - 15em) * 0.63);
+}
+.particle:nth-of-type(65) {
+  animation-delay: 1.4582991773s;
+  left: calc((100% - 15em) * 0.64);
+}
+.particle:nth-of-type(66) {
+  animation-delay: 1.6487452356s;
+  left: calc((100% - 15em) * 0.65);
+}
+.particle:nth-of-type(67) {
+  animation-delay: 1.3168352917s;
+  left: calc((100% - 15em) * 0.66);
+}
+.particle:nth-of-type(68) {
+  animation-delay: 1.2536337642s;
+  left: calc((100% - 15em) * 0.67);
+}
+.particle:nth-of-type(69) {
+  animation-delay: 1.8165881166s;
+  left: calc((100% - 15em) * 0.68);
+}
+.particle:nth-of-type(70) {
+  animation-delay: 0.9043338716s;
+  left: calc((100% - 15em) * 0.69);
+}
+.particle:nth-of-type(71) {
+  animation-delay: 0.4049182907s;
+  left: calc((100% - 15em) * 0.7);
+}
+.particle:nth-of-type(72) {
+  animation-delay: 1.3972921971s;
+  left: calc((100% - 15em) * 0.71);
+}
+.particle:nth-of-type(73) {
+  animation-delay: 1.6589141769s;
+  left: calc((100% - 15em) * 0.72);
+}
+.particle:nth-of-type(74) {
+  animation-delay: 1.7767336194s;
+  left: calc((100% - 15em) * 0.73);
+}
+.particle:nth-of-type(75) {
+  animation-delay: 1.083915326s;
+  left: calc((100% - 15em) * 0.74);
+}
+.particle:nth-of-type(76) {
+  animation-delay: 1.1946756169s;
+  left: calc((100% - 15em) * 0.75);
+}
+.particle:nth-of-type(77) {
+  animation-delay: 0.6610338494s;
+  left: calc((100% - 15em) * 0.76);
+}
+.particle:nth-of-type(78) {
+  animation-delay: 1.4155208913s;
+  left: calc((100% - 15em) * 0.77);
+}
+.particle:nth-of-type(79) {
+  animation-delay: 1.3524503776s;
+  left: calc((100% - 15em) * 0.78);
+}
+.particle:nth-of-type(80) {
+  animation-delay: 1.7413511638s;
+  left: calc((100% - 15em) * 0.79);
+}
+.particle:nth-of-type(81) {
+  animation-delay: 1.449458478s;
+  left: calc((100% - 15em) * 0.8);
+}
+.particle:nth-of-type(82) {
+  animation-delay: 1.9060793316s;
+  left: calc((100% - 15em) * 0.81);
+}
+.particle:nth-of-type(83) {
+  animation-delay: 1.8235594026s;
+  left: calc((100% - 15em) * 0.82);
+}
+.particle:nth-of-type(84) {
+  animation-delay: 0.3996147753s;
+  left: calc((100% - 15em) * 0.83);
+}
+.particle:nth-of-type(85) {
+  animation-delay: 0.3582603477s;
+  left: calc((100% - 15em) * 0.84);
+}
+.particle:nth-of-type(86) {
+  animation-delay: 1.0567216905s;
+  left: calc((100% - 15em) * 0.85);
+}
+.particle:nth-of-type(87) {
+  animation-delay: 1.0776498853s;
+  left: calc((100% - 15em) * 0.86);
+}
+.particle:nth-of-type(88) {
+  animation-delay: 1.1725928241s;
+  left: calc((100% - 15em) * 0.87);
+}
+.particle:nth-of-type(89) {
+  animation-delay: 0.3333225718s;
+  left: calc((100% - 15em) * 0.88);
+}
+.particle:nth-of-type(90) {
+  animation-delay: 0.2405005238s;
+  left: calc((100% - 15em) * 0.89);
+}
+.particle:nth-of-type(91) {
+  animation-delay: 0.8706351119s;
+  left: calc((100% - 15em) * 0.9);
+}
+.particle:nth-of-type(92) {
+  animation-delay: 0.2278768334s;
+  left: calc((100% - 15em) * 0.91);
+}
+.particle:nth-of-type(93) {
+  animation-delay: 1.4241516363s;
+  left: calc((100% - 15em) * 0.92);
+}
+.particle:nth-of-type(94) {
+  animation-delay: 1.8729854149s;
+  left: calc((100% - 15em) * 0.93);
+}
+.particle:nth-of-type(95) {
+  animation-delay: 0.2806860781s;
+  left: calc((100% - 15em) * 0.94);
+}
+.particle:nth-of-type(96) {
+  animation-delay: 0.9047535029s;
+  left: calc((100% - 15em) * 0.95);
+}
+.particle:nth-of-type(97) {
+  animation-delay: 0.9457735536s;
+  left: calc((100% - 15em) * 0.96);
+}
+.particle:nth-of-type(98) {
+  animation-delay: 0.1320098701s;
+  left: calc((100% - 15em) * 0.97);
+}
+.particle:nth-of-type(99) {
+  animation-delay: 1.4915987976s;
+  left: calc((100% - 15em) * 0.98);
+}
+.particle:nth-of-type(100) {
+  animation-delay: 1.6520603423s;
+  left: calc((100% - 15em) * 0.99);
 }

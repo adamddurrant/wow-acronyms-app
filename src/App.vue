@@ -34,8 +34,10 @@ const handleSearch = debounce(() => {
 
 <template>
 
+  <div class="main-wrapper">
+
   <section class="intro">
-    <h1>WoW Abbreviations / Acronyms Lookup</h1>
+    <h1>WoW Abbreviations & Acronyms Lookup</h1>
   </section>
 
   <section class="search">
@@ -55,7 +57,10 @@ const handleSearch = debounce(() => {
     <p v-else>Enter a search query.</p>
   </section>
 
+</div>
+
 </template>
+
 
 <script>
 export default {
@@ -66,6 +71,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 
 
 </style>
