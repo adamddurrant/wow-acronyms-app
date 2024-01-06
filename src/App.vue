@@ -46,6 +46,7 @@ const handleSearch = debounce(() => {
   });
 }, 500);
 
+
 </script>
 
 <template>
@@ -75,17 +76,17 @@ const handleSearch = debounce(() => {
 
     <section class="results">
       <transition name="fade" mode="out-in">
-      <p v-if="loading">Searching...</p>
+        <p v-if="loading">Searching...</p>
 
         <ul class="result-list" v-else-if="searchVal !== '' && searchResults.length > 0">
           <li class="result-item" v-for="result in searchResults" :key="result.id">
-            <span class="acronym">{{ result.acronym }}</span><span> &nbsp;👉&nbsp;  </span>{{ result.meaning }}
+            <span class="acronym">{{ result.acronym }}</span><span> &nbsp;👉&nbsp; </span>{{ result.meaning }}
           </li>
         </ul>
 
-      <p v-else-if="searchVal !== ''">No results found.</p>
-      <p v-else>Enter a search query.</p>
-    </transition>
+        <p v-else-if="searchVal !== ''">No results found.</p>
+        <p v-else>Enter a search query.</p>
+      </transition>
     </section>
 
   </div>
@@ -96,12 +97,12 @@ const handleSearch = debounce(() => {
 
 
 <script>
+
 export default {
   components: {
-    SearchInput
+    SearchInput,
   }
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
