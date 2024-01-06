@@ -1,29 +1,31 @@
-# wow-acronym-app
+# WoW Abbreviations Lookup App
 
-This template should help get you started developing with Vue 3 in Vite.
+## Introduction
 
-## Recommended IDE Setup
+Welcome to the WoW Abbreviations Lookup app! This Vue.js application helps quickly find the meanings of World of Warcraft (WoW) abbreviations and acronyms (it's my favourite game and acronmys bamboozle me). Whether you're a seasoned player or a newcomer, this tool will assist you in understanding commonly used terms in the WoW community.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Features
 
-## Customize configuration
+- **Search Functionality:** Enter your query in the search bar, and the app will provide you with a list of relevant results.
+- **Debounced Search:** The search is debounced to prevent unnecessary API calls, ensuring a smooth and efficient user experience.
+- **Suggested Queries:** Quickly access commonly searched terms through the provided suggestions list.
+- **Responsive Design:** The app is designed to work seamlessly on various devices, adapting to different screen sizes.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## How to Use
 
-## Project Setup
+1. **Search Bar:**
+   - Enter your query in the main search bar.
+   - Suggestions will be displayed as you type.
 
-```sh
-npm install
-```
+2. **Suggested Queries:**
+   - Click on any suggested query to quickly populate the search bar.
 
-### Compile and Hot-Reload for Development
+3. **Search Results:**
+   - The results section will display the meanings of the acronyms matching your search query.
+   - A loading message will appear during the search process.
 
-```sh
-npm run dev
-```
+4. **Feedback:**
+   - If no results are found, a message will prompt you to refine your search.
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+5. **Footer:**
+   - Find information about the creator of the app in the footer.
